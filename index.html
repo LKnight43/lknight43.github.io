@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberHawk Task</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="header">
+    <h1>CyberHawk Wind Turbine Task</h1>
+  </div>
+  <div id="main">
+    <button id="btn">Show Data</button>
+    <div id="data">
+
+    </div>
+  </div>
+
+  <script>
+
+    let button = document.getElementById('btn');
+    button.addEventListener('click', function() {
+      let request = new XMLHttpRequest();
+      request.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+          document.getElementById('data').innerHTML = this.responseText;
+        }
+      }
+      request.open('GET', 'output.php', true);
+      request.send();
+      this.style.display = 'none';
+    });
+
+    /*
+    Normally I'd use Jquery to do ajax with the code bellow, as it is much simpler and allows callbacks but I was unsure if I was allowed for this task
+
+    $('#btn').click(function() {
+      $('#data').load('output.php','',function() {
+        $('#btn').hide();
+      });
+    });
+
+    */
+
+
+  </script>
+</body>
+
+</html>
